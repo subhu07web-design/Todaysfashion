@@ -583,6 +583,28 @@ const Home = ({ onAddToCart }: { onAddToCart: (p: Product) => void }) => {
         </div>
       </section>
 
+      {/* New Location Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-emerald-600 font-bold uppercase tracking-widest text-xs mb-4 block">Visit Our Store</span>
+            <h2 className="text-4xl font-bold tracking-tighter uppercase mb-4">Find Us</h2>
+            <p className="text-gray-500 max-w-xl mx-auto">We are located in the heart of North Lakhimpur. Come visit us for the latest fashion trends.</p>
+          </div>
+          <div className="w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+            <iframe 
+              src="https://www.google.com/maps?q=NT%20Rd,%20near%20North%20Lakhimpur,%20North%20Lakhimpur,%20Assam%20787001,%20India&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen 
+              loading="lazy"
+              title="Store Location Map"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
       {/* Promo Section */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto bg-black rounded-3xl overflow-hidden flex flex-col md:flex-row items-center">
@@ -1160,14 +1182,15 @@ const Contact = () => (
             </div>
           </div>
           
-          <div className="h-64 bg-gray-200 rounded-2xl overflow-hidden grayscale">
+          <div className="h-64 bg-gray-200 rounded-2xl overflow-hidden">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3550.0!2d94.1!3d27.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDEyJzAwLjAiTiA5NMKwMDYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps?q=NT%20Rd,%20near%20North%20Lakhimpur,%20North%20Lakhimpur,%20Assam%20787001,%20India&t=&z=15&ie=UTF8&iwloc=&output=embed" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
               allowFullScreen 
               loading="lazy"
+              title="Store Location Small"
             ></iframe>
           </div>
         </div>
@@ -1199,6 +1222,26 @@ const Contact = () => (
           </form>
         </div>
       </div>
+
+      {/* New Location Section */}
+      <section className="mt-24">
+        <div className="text-center mb-12">
+          <span className="text-emerald-600 font-bold uppercase tracking-widest text-xs mb-4 block">Visit Our Store</span>
+          <h2 className="text-4xl font-bold tracking-tighter uppercase mb-4">Our Location</h2>
+          <p className="text-gray-500 max-w-xl mx-auto">Come and experience our collection in person. We are located in the heart of North Lakhimpur, providing you with the best fashion experience.</p>
+        </div>
+        <div className="w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+          <iframe 
+            src="https://www.google.com/maps?q=NT%20Rd,%20near%20North%20Lakhimpur,%20North%20Lakhimpur,%20Assam%20787001,%20India&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            style={{ border: 0 }} 
+            allowFullScreen 
+            loading="lazy"
+            title="Our Location Map"
+          ></iframe>
+        </div>
+      </section>
     </div>
   </div>
 );
