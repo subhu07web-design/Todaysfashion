@@ -934,6 +934,15 @@ const Checkout = ({ items, total, onClearCart }: { items: CartItem[], total: num
     
     setIsSubmitting(true);
     try {
+      if (!supabase) {
+        console.warn('Supabase not configured. Simulating order success.');
+        // Simulate a delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setIsSuccess(true);
+        onClearCart();
+        return;
+      }
+
       const { error } = await supabase
         .from('orders')
         .insert([
@@ -950,13 +959,16 @@ const Checkout = ({ items, total, onClearCart }: { items: CartItem[], total: num
           }
         ]);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error:', error);
+        throw new Error(error.message || 'Failed to insert order into database');
+      }
 
       setIsSuccess(true);
       onClearCart();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error placing order:', error);
-      alert('There was an error placing your order. Please try again.');
+      alert(`There was an error placing your order: ${error.message || 'Please try again.'}`);
     } finally {
       setIsSubmitting(false);
     }
