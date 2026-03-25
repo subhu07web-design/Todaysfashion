@@ -1111,7 +1111,7 @@ const About = () => (
           </p>
         </div>
         <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a4bb4?auto=format&fit=crop&q=80&w=1200" alt="Store" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          <img src="https://i.postimg.cc/Wzdq8x4p/todaysfashionfront-IMG.png" alt="Store" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
         </div>
       </div>
       
