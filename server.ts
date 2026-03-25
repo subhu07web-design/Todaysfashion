@@ -36,7 +36,7 @@ async function startServer() {
 
     const mailOptions = {
       from: `"Today's Fashion Order" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER || 'daskajaldas780@gmail.com', // Default to user's email
+      to: 'subhu07.web@gmail.com', // Updated recipient
       subject: `New Order Received - ${firstName} ${lastName}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
@@ -46,6 +46,7 @@ async function startServer() {
           <h3 style="color: #374151;">Customer Information</h3>
           <p><strong>Name:</strong> ${firstName} ${lastName}</p>
           <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${req.body.phone || 'N/A'}</p>
           <p><strong>Address:</strong> ${address}, ${city} - ${pinCode}</p>
           
           <h3 style="color: #374151; margin-top: 30px;">Order Summary</h3>

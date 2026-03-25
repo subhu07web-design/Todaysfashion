@@ -918,6 +918,7 @@ const Checkout = ({ items, total, onClearCart }: { items: CartItem[], total: num
     firstName: '',
     lastName: '',
     email: '',
+    phone: '',
     address: '',
     city: '',
     pinCode: ''
@@ -967,6 +968,7 @@ const Checkout = ({ items, total, onClearCart }: { items: CartItem[], total: num
             first_name: formData.firstName,
             last_name: formData.lastName,
             email: formData.email,
+            phone: formData.phone,
             street_address: formData.address,
             city: formData.city,
             zip_code: formData.pinCode,
@@ -1042,6 +1044,15 @@ const Checkout = ({ items, total, onClearCart }: { items: CartItem[], total: num
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="Email Address" 
+                className="bg-gray-50 border-none px-4 py-3 text-sm rounded-lg w-full mb-4 focus:ring-1 focus:ring-emerald-600 outline-none" 
+              />
+              <input 
+                required
+                type="tel" 
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                placeholder="Phone Number" 
                 className="bg-gray-50 border-none px-4 py-3 text-sm rounded-lg w-full mb-4 focus:ring-1 focus:ring-emerald-600 outline-none" 
               />
               <input 
