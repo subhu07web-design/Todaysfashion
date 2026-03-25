@@ -980,6 +980,9 @@ const Checkout = ({ items, total, onClearCart }: { items: CartItem[], total: num
 
       if (error) {
         console.error('Supabase error:', error);
+        if (error.message?.includes('column "phone" of relation "orders" does not exist')) {
+          throw new Error('The "phone" column is missing in your Supabase table. Please run the SQL fix provided in the chat.');
+        }
         throw new Error(error.message || 'Failed to insert order into database');
       }
 
