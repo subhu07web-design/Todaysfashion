@@ -1110,8 +1110,8 @@ const About = () => (
             We believe that what you wear is an extension of your personality. That's why we meticulously curate our collections, ensuring every piece meets our high standards of style, comfort, and durability.
           </p>
         </div>
-        <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-          <img src="https://i.postimg.cc/Wzdq8x4p/todaysfashionfront-IMG.png" alt="Store" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+        <div className="rounded-3xl overflow-hidden shadow-2xl">
+          <img src="https://i.postimg.cc/Wzdq8x4p/todaysfashionfront-IMG.png" alt="Store Front" className="w-full h-auto block" referrerPolicy="no-referrer" />
         </div>
       </div>
       
