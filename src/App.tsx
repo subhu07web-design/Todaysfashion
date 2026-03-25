@@ -934,9 +934,26 @@ const Checkout = ({ items, total, onClearCart }: { items: CartItem[], total: num
     
     setIsSubmitting(true);
     try {
+      // 1. Send Order Email Notification via Backend
+      try {
+        const emailResponse = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...formData, items, total }),
+        });
+        
+        const emailResult = await emailResponse.json();
+        if (!emailResult.success) {
+          console.warn('Email notification failed:', emailResult.message);
+          // We don't throw here to allow the order to still be saved to Supabase
+        }
+      } catch (emailError) {
+        console.error('Error calling email API:', emailError);
+      }
+
+      // 2. Save to Supabase (Backup/Record)
       if (!supabase) {
         console.warn('Supabase not configured. Simulating order success.');
-        // Simulate a delay
         await new Promise(resolve => setTimeout(resolve, 1000));
         setIsSuccess(true);
         onClearCart();
