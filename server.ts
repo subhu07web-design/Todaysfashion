@@ -83,7 +83,7 @@ async function startServer() {
 
       // 0. Send to Google Apps Script
       try {
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwFM-aQMYB2-x7tr0dyQ7sQAEUZXe9rm6QfRYI8a7O1wBZbR6MSwjHl7oekmVx6p8_kEQ/exec';
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwtWH7IJ_tCj5w4wyez5rj3xuw8NxHlMOaSODJR8x_LSd4nb5FcSRtWVkNFWaZfXjZhwg/exec';
         
         // Prepare data for Google Sheets as requested
         const sheetData = {
