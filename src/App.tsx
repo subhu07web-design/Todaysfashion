@@ -935,21 +935,21 @@ const Checkout = ({ items, total, onClearCart }: { items: CartItem[], total: num
     
     setIsSubmitting(true);
     try {
-      // 1. Send Order Email Notification via Backend
+      // 1. Send Order Notification (Email & Google Sheets) via Backend
       try {
-        const emailResponse = await fetch('/api/orders', {
+        const response = await fetch('/api/orders', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ...formData, items, total }),
         });
         
-        const emailResult = await emailResponse.json();
-        if (!emailResult.success) {
-          console.warn('Email notification failed:', emailResult.message);
+        const result = await response.json();
+        if (!result.success) {
+          console.warn('Order notification failed:', result.message);
           // We don't throw here to allow the order to still be saved to Supabase
         }
-      } catch (emailError) {
-        console.error('Error calling email API:', emailError);
+      } catch (error) {
+        console.error('Error calling order notification API:', error);
       }
 
       // 2. Save to Supabase (Backup/Record)

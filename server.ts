@@ -14,7 +14,7 @@ async function startServer() {
 
   // API route for sending order emails
   app.post("/api/orders", async (req, res) => {
-    const { firstName, lastName, email, address, city, pinCode, items, total } = req.body;
+    const { firstName, lastName, email, phone, address, city, pinCode, items, total } = req.body;
 
     // Configure nodemailer with Gmail
     // Note: The user MUST provide GMAIL_USER and GMAIL_PASS (App Password) in environment variables
@@ -46,7 +46,7 @@ async function startServer() {
           <h3 style="color: #374151;">Customer Information</h3>
           <p><strong>Name:</strong> ${firstName} ${lastName}</p>
           <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${req.body.phone || 'N/A'}</p>
+          <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
           <p><strong>Address:</strong> ${address}, ${city} - ${pinCode}</p>
           
           <h3 style="color: #374151; margin-top: 30px;">Order Summary</h3>
@@ -80,6 +80,37 @@ async function startServer() {
       if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
         throw new Error("GMAIL_USER or GMAIL_PASS not configured in environment variables.");
       }
+
+      // 0. Send to Google Apps Script
+      try {
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbye8eCw35RT8oa3GZ0BeZ6eLJRxK-4Ww8tw7dgsGkX23A-XKHjWoX2c_iECUtjIo9dt/exec';
+        
+        // Prepare data for Google Sheets as requested
+        const sheetData = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          phone: phone || '',
+          product: items.map((item: any) => `${item.name} (x${item.quantity})`).join(', '),
+          quantity: items.reduce((acc: number, item: any) => acc + item.quantity, 0),
+          price: total,
+          address: address,
+          city: city,
+          pin: pinCode,
+          timestamp: new Date().toLocaleString()
+        };
+
+        await fetch(googleScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sheetData),
+        });
+        console.log('Data sent to Google Apps Script successfully');
+      } catch (googleError) {
+        console.error('Error sending to Google Apps Script:', googleError);
+        // We don't fail the whole request if Google Script fails
+      }
+
       await transporter.sendMail(mailOptions);
       res.json({ success: true, message: "Order email sent successfully" });
     } catch (error: any) {
